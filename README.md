@@ -1,5 +1,5 @@
-# React + Vite
-
+# TODO web application by Vineet Raj
+used React along with redux and redux toolkit for this project
 In this web application i created a ToDo app 
 to try this web application you can directly go to [Link](https://todoforvineet.netlify.app/)
 
