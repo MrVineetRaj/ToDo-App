@@ -5,14 +5,11 @@ to try this web application you can directly go to [Link](https://todoforvineet.
 
 Or if you want to run this program on localhost then you sould try using this command
 
--open this program in your VS code
 
--stay in the forlde that contains 
-
-  -public , src and other files
-  
--run command " nom install "
-
--then " run npm dev "
-
--In terminal you will find a link  from your localhost server to see this program
+<ul>
+  <li>open this program in your VS code</li>
+  <li>stay in the forlde that contains -public , src and other files</li>
+  <li>run command " npm install "</li>
+  <li>then " run npm dev "</li>
+  <li>in terminal you will find a link  from your localhost server to see this program</li>
+</ul>
