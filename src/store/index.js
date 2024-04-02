@@ -1,128 +1,83 @@
-import {configureStore, createSlice} from '@reduxjs/toolkit';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 
+//these tasks are initial value of the tasks in case user  don't have any task in his localstorage
 const tasks = [
   {
-    "title": "sleep !",
-    "description": "Go to bed at 9:00pm",
-    "dueDate": "23 march",
+    "title": "Learn MERN !",
+    "dueDate": "2024-04-04",
+    "description": "complete MERN stack by 15 April",
     "isCompleted": false,
-    "creationDate": "26 March"
+    "creationDate": "2024-04-02"
   },
   {
-    "title": "Complete Assignment !",
-    "description": "2 assignments of SE and 2 of os and 1 of DC",
-    "dueDate": "29 march",
+    "title": "Software Engineering",
+    "dueDate": "2024-04-04",
+    "description": "have to prepare for this class test",
     "isCompleted": false,
-    "creationDate": "26 March"
+    "creationDate": "2024-04-02"
   },
   {
-    "title": "Learn Trading !",
-    "description": "Cover Lectures of the bullish bull master",
-    "dueDate": "24 march",
+    "title": "Bike Servicing",
+    "dueDate": "2024-04-04",
+    "description": "i must have to go for bike servicing on 3rd of march",
     "isCompleted": false,
-    "creationDate": "26 March"
-  },
-  {
-    "title": "study !",
-    "description": "Cover Syllabus for good academics",
-    "dueDate": "1 april",
-    "isCompleted": false,
-    "creationDate": "26 March"
-  },
-  {
-    "title": "Learn Mern !",
-    "description": "Cover Syllabus for good academics",
-    "dueDate": "1 april",
-    "isCompleted": false,
-    "creationDate": "26 March"
-  },
-  {
-    "title": "Complet DSA!",
-    "description": "Cover Syllabus for good academics",
-    "dueDate": "1 april",
-    "isCompleted": false,
-    "creationDate": "26 March"
+    "creationDate": "2024-04-02"
+  }]
+
+
+const localStorageKey = 'myTasks'; // ikey for stored local storage element
+
+const loadTasksFromLocalStorage = () => { //this fuction is checking if there is any task in localstorage or not
+  try {
+    const serializedTasks = localStorage.getItem(localStorageKey);
+    if (serializedTasks) {
+      return JSON.parse(serializedTasks); // if there is then its returning back those tasks
+    }
+    return tasks; // else returning default tasks
+  } catch (error) {
+    console.error('Error loading tasks from localStorage:', error);
+    return tasks; // even on error returning default tasks
   }
-  
-  ,{
-    "title": "sleep !",
-    "description": "Go to bed at 9:00pm",
-    "dueDate": "23 march",
-    "isCompleted": false,
-    "creationDate": "26 March"
-  },
-  {
-    "title": "Complete Assignment !",
-    "description": "2 assignments of SE and 2 of os and 1 of DC",
-    "dueDate": "29 march",
-    "isCompleted": false,
-    "creationDate": "26 March"
-  },
-  {
-    "title": "Learn Trading !",
-    "description": "Cover Lectures of the bullish bull master",
-    "dueDate": "24 march",
-    "isCompleted": false,
-    "creationDate": "26 March"
-  },
-  {
-    "title": "study !",
-    "description": "Cover Syllabus for good academics",
-    "dueDate": "1 april",
-    "isCompleted": false,
-    "creationDate": "26 March"
-  },
-  {
-    "title": "Learn Mern !",
-    "description": "Cover Syllabus for good academics",
-    "dueDate": "1 april",
-    "isCompleted": false,
-    "creationDate": "26 March"
-  },
-  {
-    "title": "Complet DSA!",
-    "description": "Cover Syllabus for good academics",
-    "dueDate": "1 april",
-    "isCompleted": false,
-    "creationDate": "26 March"
+};
+
+const saveTasksToLocalStorage = (tasks) => {
+  try {
+    const serializedTasks = JSON.stringify(tasks); // Converting to JSON string
+    localStorage.setItem(localStorageKey, serializedTasks);
+  } catch (error) {
+    console.error('Error saving tasks to localStorage:', error);
   }
-  
-  
-]
-const INITIAL_STATE = {
-  tasks: tasks
+};
+
+const INITIAL_STATE = {  //defining initial state
+  tasks: loadTasksFromLocalStorage(),
+  completedTasks: [] // not storing completed task inn local storage as it is already completed so not necessary
 }
-const counterSlice = createSlice({
-  name:"taskManger",
+const taskSlice = createSlice({ //creating slice
+  name: "taskManger",
   initialState: INITIAL_STATE,
   reducers: {
-    addTask: (state, action) => {
+    addTask: (state, action) => { //adding task
       state.tasks.unshift(action.payload);
+      saveTasksToLocalStorage(state.tasks);
     },
-    deleteTask:(state, action) => {
-      console.log("Clicked !")
+    deleteTask: (state, action) => { //deleting task
       state.tasks = state.tasks.filter(task => task.title !== action.payload.title);
+      saveTasksToLocalStorage(state.tasks);
+    },
+    completedTask: (state, action) => {//adding completed task
+      state.completedTasks.unshift(action.payload);
+      saveTasksToLocalStorage(state.tasks);
     }
   }
 })
 
 
-const store = configureStore({reducer:{
-  taskManger: counterSlice.reducer
-}});
+const store = configureStore({
+  reducer: {
+    taskManger: taskSlice.reducer
+  }
+});
 
-export const taskMangerActions = counterSlice.actions;
+export const taskMangerActions = taskSlice.actions;
 export default store;
-
-
-
-// const taskReducer = (state = INITIAL_STATE, action) => {
-//   let newState = state;
-//   if(action.type === 'ADD_TASK') {
-//     newState = {
-//       ...state,
-//       tasks: [...state.tasks, action.payload]
-//     }
-//   }
-//   return newState;
-// }

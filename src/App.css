@@ -8,13 +8,17 @@
 }
 
 .button{
-  background: steelblue;
-  width:30px;
-  height: 30px;
   position: absolute;
   top: 10px;
   left: 10px;
   z-index: 1;
+  font-size: 30px;
+}
+.button.inactive{
+  color: black;
+}
+.button.active{
+  color: white;
 }
 
 .sideBar.active{

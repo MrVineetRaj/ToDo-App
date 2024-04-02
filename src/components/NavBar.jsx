@@ -1,44 +1,50 @@
 import { useSelector } from 'react-redux';
 import React from 'react';
 import Style from './css/NavBar.module.css';
-import { jsPDF } from 'jspdf'; // Import jsPDF library
+import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 
 const SideBar = ({displaySideBar}) => {
 
-  const tasksObj = useSelector(state => state.taskManger);
+  const tasksObj = useSelector(state => state.taskManger); //fetching tasks from redux store
   const tasks = tasksObj.tasks;
 
-  const downloadTasks = () => {
+  const downloadTasks = () => { //function to download tasks in pdf format
     if (!tasks || tasks.length === 0) {
       alert('No tasks available to download.');
       return;
     }
 
     const doc = new jsPDF(); // Create a new jsPDF document
-    const headers = ['S.No', 'Title', 'Description', 'Due Date', 'Creation Date', 'Completed',"Done ?"]; // Table headers
-    const data = tasks.map((task, index) => ([
-      index + 1, // Add serial number
-      task.title,
-      task.description,
-      task.dueDate,
-      task.creationDate,
-      task.isCompleted ? 'Yes' : 'No', // Display 'Yes' or 'No' for completed status
-      "O"
-    ]));
+    const headers = ['S.No', 'Title', 'Description', 'Due Date', 'Creation Date',"Done ?"]; // Table headers
+    const data = tasks.map((task, index) => {
+      if (!task) {
+        console.error(`Task at index ${index} is undefined or null.`);
+        return null;
+      }
+      return [
+        index + 1, // for  adding serial number
+        task.title,
+        task.description,
+        task.dueDate,
+        task.creationDate,
+        "O"
+      ];
+    }).filter(item => item); // This will remove any null values from the array
+    
 
-    // **Check for jsPDF-autotable (if needed):**
+    // **Checking for jsPDF-autotable (if needed):**
     if (!jsPDF.API.autoTable) {
       console.error('jsPDF autoTable plugin not found. Please install jspdf-autotable.');
       return; // Prevent errors if plugin is missing
     }
 
-    // Add table with options (adjust options as needed)
+    // Add table to the document
     doc.autoTable({
       startY: 20, // Start table 20 units from the top
       head: [headers],
       body: data,
-      theme: 'grid', // Theme for table (grid, plain, striped, etc.)
+      theme: 'grid', // Theme for table 
       styles: {
         fontSize: 11, // Font size for table content
         cellPadding: 5, // Padding for cells
@@ -51,14 +57,14 @@ const SideBar = ({displaySideBar}) => {
     doc.save(filename); // Download the PDF document
   };
 
-  const name = "Vineet Raj";
-  const email = "abc@example.com";
+  const name = "Vineet Raj"; // Name of the user
+  const email = "abc@example.com";// Email of the user
 
   return (
     <div className={`${Style.container} ${Style[displaySideBar]}` }>
       <div className={`${Style.top}`}>
         <div>
-          <img src="/vite.svg" alt="Loading..." />
+          <img src="/vite.svg" alt="Loading..." />{/* image of the user */}
         </div>
         <div>
           <h3>{name}</h3>

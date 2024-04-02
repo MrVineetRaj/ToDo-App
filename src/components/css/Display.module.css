@@ -1,15 +1,14 @@
-.container{
+.container {
   height: 100vh;
   display: flex;
   width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color :rgba(82, 98, 251, 0.5);
+  background-color: white;
   margin: 0;
 }
-
-.container .top{
+.container .top {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,25 +18,64 @@
   color: black;
 }
 
-.container .top button{
-  background: steelblue;
-  color: white;
-  border-radius: 10px;
-  padding: 10px 20px;
+.container .top button {
   border: 0;
-}
-.container .cards{
-  color: white;
-  height: calc(100vh - 100px);
-  background: none;
-  width: 100%;
+  border-radius: 5px;
+  padding: 10px 20px;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  align-content: first baseline;
-  overflow-y:scroll;
-  scrollbar-width: none;
+  background: rgb(83, 180, 70);
+  color: white;
 }
 
+.container .bottom {
+  /* background: red; */
+  height: calc(100% - 100px);
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container .bottom .completelist {
+  /* background: green; */
+  height: 100%;
+  scrollbar-width: thin;
+  width: 70%;
+  scrollbar-color: steelblue rgb(0, 0, 0, 0.1);
+}
+
+.container .bottom .completelist .completedTasks{
+  height:calc(100vh - 350px);
+  overflow: hidden;
+  /* background: #000; */
+}
+
+.container .bottom .completelist .completedTasks .list{
+  height: 100%;
+  overflow-y: scroll;
+  /* background: #000; */
+}
+.container .bottom .completelist .completedTasks p {
+  border: 1px solid rgb(0, 0, 0, 0.4);
+  border-radius: 5px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .bottom .list button {
+  border: 0;
+  border-radius: 5px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: steelblue;
+  color: white;
+}
+
+.taskDisplay {
+  width: 30%;
+}
