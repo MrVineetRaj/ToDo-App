@@ -1,8 +1,12 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+In this web application i created a ToDo app 
+to try this web application you can directly go to [Link](https://todoforvineet.netlify.app/)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Or if you want to run this program on localhost then you sould try using this command
+-open this program in your VS code
+-stay in the forlde that contains 
+  -public , src and other files
+-run command " nom install "
+-then " run npm dev "
+-In terminal you will find a link  from your localhost server to see this program
