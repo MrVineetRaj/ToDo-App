@@ -2,7 +2,7 @@
 Used React along with redux and redux toolkit for this project. In this web application I created a ToDo app,
 to try this web application you can directly go to [Link](https://todoforvineet.netlify.app/)
 
-Or if you want to run this program on localhost then you sould try using these command
+Or if you want to run this program on localhost then you should try using these command
 
 <ul>
   <li>open this program in your VS code</li>
