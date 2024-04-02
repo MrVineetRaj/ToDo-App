@@ -1,0 +1,43 @@
+.container{
+  height: 100vh;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color :rgba(82, 98, 251, 0.5);
+  margin: 0;
+}
+
+.container .top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  width: 80%;
+  margin-top: 0;
+  color: black;
+}
+
+.container .top button{
+  background: steelblue;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  border: 0;
+}
+.container .cards{
+  color: white;
+  height: calc(100vh - 100px);
+  background: none;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  align-content: first baseline;
+  overflow-y:scroll;
+  scrollbar-width: none;
+}
+

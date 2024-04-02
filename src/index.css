@@ -1,0 +1,9 @@
+body{
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+button:active{
+  transform: scale(0.8);
+}

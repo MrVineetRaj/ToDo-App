@@ -1,0 +1,42 @@
+.card{
+  border: 1px solid black;
+  width:180px ;
+  padding: 5px 10px;
+  align-self: self-start;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  background: rgb(255, 255, 255);
+  margin: 10px;
+  box-shadow: 5px 5px 5px rgb(0,0,0,0.4);
+}
+
+.card h2{
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.card .dates{
+  margin: 0;
+  display: flex;
+  font-size: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+.card .description{
+  margin: 0;
+  font-size: 18px;
+  text-align: justify;
+}
+.card button{
+  background: rgb(255, 71, 30);
+  color: white;
+  width: 100%;
+  margin: 20px 0 5px 0;
+  padding: 10px 0;
+  border: 0;
+  border-radius: 5px;
+  font-weight: bold;
+}
